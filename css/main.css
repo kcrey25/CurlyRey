@@ -1,0 +1,20 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+
+ul:hover, ul:active {
+	color: black!important;
+}
+
+.navbar-nav li a {
+	color: white!important;
+	text-shadow: none;
+}
+
+.navbar-nav li a:hover{
+	color: #000!important;
+}
+
+ul.selected {
+	color: black;
+}
+
+

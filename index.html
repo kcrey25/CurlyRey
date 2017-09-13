@@ -8,6 +8,7 @@
     <script src="scripts/jquery.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <link rel="stylesheet"  href="css/site.css"/>
+    <link rel="stylesheet"  href="css/main.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
@@ -60,7 +61,7 @@
       </div>
     </div>
     <div class="column-center">
-      <div class="col-sm-3">
+      <!--<div class="col-sm-3">
         <select id="cards">
           <option value="cards">Cards</option>
           <option value="christmas">Christmas</option>
@@ -103,7 +104,46 @@
           <div>
             <img src="images/BabyBlessing.jpg" class="examples"/>
             <img src="images/WeddingAnnouncement.jpg" class="examples"/>
-          </div>
+          </div>-->
+        <div class="navbar-collapse collapse" style="background-color: black">
+          <ul class="nav navbar-nav selected">
+            <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cards<span class="caret"></span></a>
+              <ul class="dropdown-menu navbar-nav-ul" style="background-color:#000000">
+                <li><a class="whitetext" href="#">Christmas</a></li>
+                <li><a class="whitetext" href="#">Thank You</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+            <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#">Announcements<span class="caret"></span></a>
+              <ul class="dropdown-menu navbar-nav-ul" style="background-color:#000000">
+                <li><a class="whitetext" href="#">Mission</a></li>
+                <li><a class="whitetext" href="#">Save The Date</a></li>
+                <li><a class="whitetext" href="#">Baby</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+            <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#">Invitations<span class="caret"></span></a>
+              <ul class="dropdown-menu navbar-nav-ul" style="background-color:#000000">
+                <li><a class="whitetext" href="#">Birthday</a></li>
+                <li><a class="whitetext" href="#">Baptism</a></li>
+                <li><a class="whitetext" href="#">Farewell</a></li>
+                <li><a class="whitetext" href="#">Bridal Shower</a></li>
+                <li><a class="whitetext" href="#">Baby Blessing</a></li>
+                <li><a class="whitetext" href="#">Baby Shower</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+            <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#">Prints<span class="caret"></span></a>
+              <ul class="dropdown-menu navbar-nav-ul" style="background-color:#000000">
+                <li><a class="whitetext" href="#">Nursery</a></li>
+                <li><a class="whitetext" href="#">Quotes</a></li>
+                <li><a class="whitetext" href="#">Floral</a></li>
+                <li><a class="whitetext" href="#">Scriptures</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>  
     </div>
     <div class="column-right">
       <div>
@@ -143,6 +183,13 @@
     </div>
 
     <script type="text/javascript">
+
+      $(document).ready(function(){
+        $('#cards').change(cardsVisible);
+        $('#prints').change(printsVisible);
+        $('#invites').change(invitesVisible);
+        $('#announcements').change(announcementsVisible);
+      });
       var cardsDiv = document.getElementById("cardsContent");
       var invitesDiv = document.getElementById("invitationsContent");
       var announcementsDiv = document.getElementById("announcementsContent");
@@ -151,10 +198,6 @@
       var year = today.getFullYear();
       document.getElementById("footer").innerHTML = "&copy" + year + " Curly Rey Design";
 
-      $('#cards').change(cardsVisible);
-      $('#prints').change(printsVisible);
-      $('#invites').change(invitesVisible);
-      $('#announcements').change(announcementsVisible);
 
       function optionContentChange() {
         $("#optionContent").load("cards.html");
@@ -162,11 +205,11 @@
 
       function cardsVisible() {
         $.ajax({
-           url:announcements.html,
-           type:'GET',
-           success: function(data){
-               $('#wedding').html($(data).find('#optionContent').html());
-           }
+          url: "announcements.html",
+          context: document.body,
+          success: function(response){
+            $('#optionContent').html($(response).find('#wedding').html);
+          }
         });
       }
 
